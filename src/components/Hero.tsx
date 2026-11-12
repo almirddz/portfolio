@@ -1,17 +1,10 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { ArrowDownRight, MapPin } from 'lucide-react'
+import { ArrowDown, ArrowRight } from 'lucide-react'
 import { useLang } from '../i18n'
 import { config } from '../config'
 import Terminal from './Terminal'
 import photo from '../assets/almir.webp'
-
-const CAPTION = {
-  en: 'me — probably fixing DNS',
-  fr: 'moi — sûrement en train de réparer le DNS',
-  de: 'ich — repariere wohl gerade DNS',
-}
-const TRY = { en: 'try it ↓', fr: 'essaie ↓', de: 'probier’s ↓' }
 
 export default function Hero() {
   const { t, lang } = useLang()
@@ -27,62 +20,58 @@ export default function Hero() {
 
   return (
     <section id="top" className="hero">
-      <div className="container hero__grid">
-        <div className="hero__text">
-          <p className="hero__hello mono">{t.hero.hello} 👋</p>
-          <h1 className="hero__name">
-            Almir<br />Dzaferi<span className="hero__dot">.</span>
-          </h1>
-          <p className="hero__role">
-            <AnimatePresence mode="wait">
-              <motion.mark
-                key={`${lang}-${i}`}
-                initial={reduce ? false : { opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-              >
-                {t.hero.roles[i]}
-              </motion.mark>
-            </AnimatePresence>
-          </p>
-          <p className="hero__pitch">{t.hero.pitch}</p>
-          <div className="hero__meta">
-            <span className="pill"><MapPin size={14} /> {t.hero.location}</span>
-            <span className="pill pill--ok"><span className="dot" /> {t.hero.available}</span>
-          </div>
-          <div className="hero__cta">
-            <a href="#projects" className="btn btn-primary">{t.hero.ctaProjects} <ArrowDownRight size={18} /></a>
-            <a href="#contact" className="btn btn-ghost">{t.hero.ctaContact}</a>
-          </div>
+      <div className="container grid hero__grid">
+        <motion.h1
+          className="hero__name"
+          initial={reduce ? false : { opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          Almir<br />Dzaferi
+        </motion.h1>
+
+        <div className="hero__side">
+          <div className="cross" aria-hidden="true"><i /><i /></div>
+          {config.showPhoto && <img className="hero__photo" src={photo} alt="Almir Dzaferi" width={640} height={766} />}
         </div>
 
-        {config.showPhoto && (
-          <motion.figure
-            className="polaroid"
-            initial={reduce ? false : { opacity: 0, rotate: 0, y: 20 }}
-            animate={{ opacity: 1, rotate: 3, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={reduce ? undefined : { rotate: 0, scale: 1.02 }}
-          >
-            <span className="tape" />
-            <img src={photo} alt="Almir Dzaferi" width={640} height={766} />
-            <figcaption className="hand">{CAPTION[lang]}</figcaption>
-          </motion.figure>
-        )}
+        <div className="hero__role">
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={`${lang}-${i}`}
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3 }}
+            >
+              {t.hero.roles[i]}
+            </motion.span>
+          </AnimatePresence>
+        </div>
+        <p className="hero__pitch">{t.hero.pitch}</p>
+        <dl className="hero__facts">
+          <div><dt>{lang === 'de' ? 'Ort' : lang === 'fr' ? 'Lieu' : 'Location'}</dt><dd>{t.hero.location}</dd></div>
+          <div><dt>{lang === 'de' ? 'Status' : lang === 'fr' ? 'Statut' : 'Status'}</dt><dd><span className="live" /> {t.hero.available}</dd></div>
+        </dl>
+        <div className="hero__cta">
+          <a href="#projects" className="btn btn--solid">{t.hero.ctaProjects} <ArrowDown size={18} /></a>
+          <a href="#contact" className="btn btn--line">{t.hero.ctaContact} <ArrowRight size={18} /></a>
+        </div>
       </div>
 
-      <div className="container hero__term">
-        <span className="hand hero__try">{TRY[lang]}</span>
-        <Terminal />
+      <div className="band">
+        <div className="container grid">
+          <span className="band__label">Terminal</span>
+          <div className="band__body"><Terminal /></div>
+        </div>
       </div>
 
       <div className="container">
         <ul className="stats">
           {t.stats.map((s, k) => (
-            <li key={k} className="stat">
-              <span className="stat__value">{s.value}</span>
-              <span className="stat__label">{s.label}</span>
+            <li key={k}>
+              <span className="stats__value">{s.value}</span>
+              <span className="stats__label">{s.label}</span>
             </li>
           ))}
         </ul>

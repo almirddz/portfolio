@@ -1,23 +1,18 @@
 import { useLang } from '../i18n'
+import Section from './Section'
 import Reveal from './Reveal'
 
 export default function About() {
   const { t } = useLang()
+  const [lead, ...rest] = t.about.paragraphs
   return (
-    <section id="about">
-      <div className="container about">
-        <Reveal>
-          <span className="eyebrow">§ 01</span>
-          <h2 className="section-title">{t.about.title}</h2>
-        </Reveal>
-        <div className="about__body">
-          {t.about.paragraphs.map((p, i) => (
-            <Reveal key={i} delay={i * 0.08}>
-              <p className={i === t.about.paragraphs.length - 1 ? 'about__next' : ''}>{p}</p>
-            </Reveal>
-          ))}
-        </div>
+    <Section id="about" num="01" title={t.about.title}>
+      <Reveal><p className="about__lead">{lead}</p></Reveal>
+      <div className="about__cols">
+        {rest.map((p, i) => (
+          <Reveal key={i} delay={i * 0.06}><p>{p}</p></Reveal>
+        ))}
       </div>
-    </section>
+    </Section>
   )
 }

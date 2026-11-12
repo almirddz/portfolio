@@ -1,49 +1,43 @@
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Plus } from 'lucide-react'
 import { useLang } from '../i18n'
-import Reveal from './Reveal'
-
-// Experience rendered like `git log`, newest commit first.
-const COMMITS = [
-  { hash: 'a3f9c21', refs: 'HEAD -> sapporo' },
-  { hash: '7b2e04d', refs: 'tag: cfc-2026' },
-]
+import Section from './Section'
 
 export default function Experience() {
   const { t } = useLang()
+  const [open, setOpen] = useState<number | null>(0)
   return (
-    <section id="experience">
-      <div className="container">
-        <Reveal>
-          <span className="eyebrow">§ 03</span>
-          <h2 className="section-title">{t.experience.title}</h2>
-          <p className="mono muted cmd">$ git log --career</p>
-        </Reveal>
-        <div className="gitlog">
-          {t.experience.items.map((job, i) => {
-            const c = COMMITS[i] ?? { hash: '0000000', refs: '' }
-            return (
-              <Reveal key={i} delay={i * 0.08}>
-                <article className="commit">
-                  <div className="commit__graph"><span className={`commit__node ${job.current ? 'is-current' : ''}`} /></div>
-                  <div className="commit__body">
-                    <p className="mono commit__hash">
-                      commit {c.hash}
-                      {c.refs && <span className="commit__refs"> ({c.refs})</span>}
-                    </p>
-                    <p className="mono muted small">Date: {job.period} · {job.place}</p>
-                    <h3 className="commit__msg">{job.role}</h3>
-                    <p className="commit__org">{job.org}</p>
-                    <ul className="commit__diff">
-                      {job.bullets.map((b, k) => (
-                        <li key={k}><span className="plus">+</span> {b}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-              </Reveal>
-            )
-          })}
-        </div>
+    <Section id="experience" num="03" title={t.experience.title}>
+      <div className="table">
+        {t.experience.items.map((job, i) => {
+          const isOpen = open === i
+          return (
+            <div key={i} className={`row row--exp ${isOpen ? 'is-open' : ''}`}>
+              <button className="row__head" onClick={() => setOpen(isOpen ? null : i)} aria-expanded={isOpen}>
+                <span className="row__year">{job.period}</span>
+                <span className="row__title">{job.role}</span>
+                <span className="row__org">{job.org}</span>
+                <span className="row__place">{job.place}</span>
+                <Plus size={20} className="row__plus" />
+              </button>
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.ul
+                    className="row__detail"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    {job.bullets.map((b, k) => <li key={k}>{b}</li>)}
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            </div>
+          )
+        })}
       </div>
-    </section>
+    </Section>
   )
 }

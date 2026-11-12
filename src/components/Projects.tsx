@@ -1,74 +1,53 @@
-import { useState, type MouseEvent } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ExternalLink } from 'lucide-react'
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowUpRight, Plus } from 'lucide-react'
 import { useLang } from '../i18n'
-import Reveal from './Reveal'
-
-function tilt(e: MouseEvent<HTMLElement>) {
-  const el = e.currentTarget
-  const r = el.getBoundingClientRect()
-  el.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`)
-  el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`)
-}
+import Section from './Section'
 
 export default function Projects() {
   const { t } = useLang()
   const [open, setOpen] = useState<number | null>(null)
-
   return (
-    <section id="projects" className="section-alt">
-      <div className="container">
-        <Reveal>
-          <span className="eyebrow">§ 04</span>
-          <h2 className="section-title">{t.projects.title}</h2>
-        </Reveal>
-        <div className="projects-grid">
-          {t.projects.items.map((p, i) => {
-            const isOpen = open === i
-            return (
-              <Reveal key={p.title} delay={(i % 3) * 0.08} className={i === 0 ? 'project--featured' : ''}>
-                <article className="project card" onMouseMove={tilt}>
-                  <div className="project__glow" />
-                  <span className="project__kind">{p.kind}</span>
-                  <h3 className="project__title">{p.title}</h3>
-                  <p className="project__summary">{p.summary}</p>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.ul
-                        className="project__details"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {p.details.map((d, k) => (
-                          <li key={k}>{d}</li>
-                        ))}
-                      </motion.ul>
-                    )}
-                  </AnimatePresence>
-                  <div className="project__tags">
-                    {p.tags.map((tag) => (
-                      <span key={tag} className="tag">{tag}</span>
-                    ))}
-                  </div>
-                  <div className="project__actions">
-                    <button className="project__toggle" onClick={() => setOpen(isOpen ? null : i)} aria-expanded={isOpen}>
-                      {isOpen ? t.projects.less : t.projects.more}
-                      <ChevronDown size={16} className={isOpen ? 'rot' : ''} />
-                    </button>
-                    {p.link && (
-                      <a className="project__link" href={p.link.href} target="_blank" rel="noopener noreferrer">
-                        {p.link.label} <ExternalLink size={14} />
-                      </a>
-                    )}
-                  </div>
-                </article>
-              </Reveal>
-            )
-          })}
-        </div>
+    <Section id="projects" num="04" title={t.projects.title}>
+      <div className="table">
+        {t.projects.items.map((p, i) => {
+          const isOpen = open === i
+          return (
+            <div key={p.title} className={`row row--proj ${isOpen ? 'is-open' : ''}`}>
+              <button className="row__head" onClick={() => setOpen(isOpen ? null : i)} aria-expanded={isOpen}>
+                <span className="row__idx">{String(i + 1).padStart(2, '0')}</span>
+                <span className="row__title row__title--big">{p.title}</span>
+                <span className="row__org">{p.kind}</span>
+                <Plus size={22} className="row__plus" />
+              </button>
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    className="proj"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                  >
+                    <div className="proj__inner">
+                      <p className="proj__summary">{p.summary}</p>
+                      <ul className="row__detail row__detail--flat">
+                        {p.details.map((d, k) => <li key={k}>{d}</li>)}
+                      </ul>
+                      <p className="proj__tags">{p.tags.join(' / ')}</p>
+                      {p.link && (
+                        <a className="proj__link" href={p.link.href} target="_blank" rel="noopener noreferrer">
+                          {p.link.label} <ArrowUpRight size={16} />
+                        </a>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )
+        })}
       </div>
-    </section>
+    </Section>
   )
 }

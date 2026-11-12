@@ -2,9 +2,10 @@ import { useEffect, useRef, useState, type FormEvent } from 'react'
 import HCaptcha from '@hcaptcha/react-hcaptcha'
 import { AnimatePresence, motion } from 'framer-motion'
 import { CheckCircle2, AlertCircle, Send, ShieldCheck, Video } from 'lucide-react'
-import { useLang, useTheme } from '../i18n'
+import { useLang } from '../i18n'
 import { config } from '../config'
 import Reveal from './Reveal'
+import Section from './Section'
 
 // Anti-bot layers:
 // 1. hCaptcha (verified server-side by Web3Forms)
@@ -24,7 +25,6 @@ function lastSent(): number {
 
 export default function Contact() {
   const { t, lang } = useLang()
-  const { theme } = useTheme()
   const c = t.contact
   const startedAt = useRef(Date.now())
   const captchaRef = useRef<HCaptcha>(null)
@@ -91,11 +91,9 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="section-alt">
-      <div className="container contact">
+    <Section id="contact" num="06" title={c.title} dark>
+      <div className="contact">
         <Reveal className="contact__intro">
-          <span className="eyebrow">§ 06</span>
-          <h2 className="section-title">{c.title}</h2>
           <p>{c.intro}</p>
           <ul className="contact__points">
             <li><Video size={18} /> Google Meet · Teams · Zoom</li>
@@ -104,7 +102,7 @@ export default function Contact() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <form className="contact__form card" onSubmit={onSubmit} noValidate>
+          <form className="contact__form" onSubmit={onSubmit} noValidate>
             {/* Honeypots — hidden from humans and screen readers */}
             <input type="checkbox" name="botcheck" className="hp" tabIndex={-1} autoComplete="off" aria-hidden="true" />
             <div className="hp" aria-hidden="true">
@@ -123,7 +121,7 @@ export default function Contact() {
                 ref={captchaRef}
                 sitekey={config.hcaptchaSiteKey}
                 reCaptchaCompat={false}
-                theme={theme}
+                theme="dark"
                 languageOverride={lang}
                 onVerify={setToken}
                 onExpire={() => setToken(null)}
@@ -150,7 +148,7 @@ export default function Contact() {
           </form>
         </Reveal>
       </div>
-    </section>
+    </Section>
   )
 }
 

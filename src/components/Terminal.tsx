@@ -16,7 +16,7 @@ export default function Terminal() {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    setHistory([{ out: [`Last login: ${new Date().toDateString()} from sapporo.jp`, terminalHint(lang)] }])
+    setHistory([{ out: [terminalHint(lang)] }])
   }, [lang])
 
   useEffect(() => {
@@ -52,15 +52,11 @@ export default function Terminal() {
 
   return (
     <div className="term" onClick={() => inputRef.current?.focus()}>
-      <div className="term__bar">
-        <span className="term__dots"><i /><i /><i /></span>
-        <span className="term__title">almir@sapporo: ~</span>
-      </div>
       <div className="term__body" ref={bodyRef} aria-live="polite">
         {history.map((e, i) => (
           <div key={i}>
             {e.cmd !== undefined && (
-              <div><span className="term__prompt">almir@sapporo:~$</span> {e.cmd}</div>
+              <div><span className="term__prompt">$</span> {e.cmd}</div>
             )}
             {e.out.map((l, k) => (
               <div key={k} className="term__out">{l}</div>
@@ -68,7 +64,7 @@ export default function Terminal() {
           </div>
         ))}
         <label className="term__line">
-          <span className="term__prompt">almir@sapporo:~$</span>
+          <span className="term__prompt">$</span>
           <input
             ref={inputRef}
             value={value}
