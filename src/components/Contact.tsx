@@ -94,7 +94,7 @@ export default function Contact() {
     <section id="contact" className="section-alt">
       <div className="container contact">
         <Reveal className="contact__intro">
-          <span className="eyebrow">06 · {t.nav.contact}</span>
+          <span className="eyebrow">§ 06</span>
           <h2 className="section-title">{c.title}</h2>
           <p>{c.intro}</p>
           <ul className="contact__points">

@@ -8,7 +8,7 @@ export default function Education() {
     <section id="education">
       <div className="container">
         <Reveal>
-          <span className="eyebrow">05 · {t.education.title}</span>
+          <span className="eyebrow">§ 05</span>
           <h2 className="section-title">{t.education.title}</h2>
         </Reveal>
         <div className="edu-grid">

@@ -19,7 +19,7 @@ export default function Projects() {
     <section id="projects" className="section-alt">
       <div className="container">
         <Reveal>
-          <span className="eyebrow">04 · {t.nav.projects}</span>
+          <span className="eyebrow">§ 04</span>
           <h2 className="section-title">{t.projects.title}</h2>
         </Reveal>
         <div className="projects-grid">

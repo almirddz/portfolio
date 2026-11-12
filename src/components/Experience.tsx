@@ -1,6 +1,11 @@
-import { Briefcase, MapPin } from 'lucide-react'
 import { useLang } from '../i18n'
 import Reveal from './Reveal'
+
+// Experience rendered like `git log`, newest commit first.
+const COMMITS = [
+  { hash: 'a3f9c21', refs: 'HEAD -> sapporo' },
+  { hash: '7b2e04d', refs: 'tag: cfc-2026' },
+]
 
 export default function Experience() {
   const { t } = useLang()
@@ -8,36 +13,36 @@ export default function Experience() {
     <section id="experience">
       <div className="container">
         <Reveal>
-          <span className="eyebrow">03 · {t.nav.experience}</span>
+          <span className="eyebrow">§ 03</span>
           <h2 className="section-title">{t.experience.title}</h2>
+          <p className="mono muted cmd">$ git log --career</p>
         </Reveal>
-        <ol className="timeline">
-          {t.experience.items.map((job, i) => (
-            <li key={i} className="timeline__item">
-              <span className={`timeline__dot ${job.current ? 'is-current' : ''}`} />
-              <Reveal delay={i * 0.1}>
-                <article className="job card">
-                  <header className="job__head">
-                    <div>
-                      <h3>{job.role}</h3>
-                      <p className="job__org">
-                        <Briefcase size={15} /> {job.org}
-                        <span className="sep">·</span>
-                        <MapPin size={15} /> {job.place}
-                      </p>
-                    </div>
-                    <span className={`job__period ${job.current ? 'is-current' : ''}`}>{job.period}</span>
-                  </header>
-                  <ul className="job__list">
-                    {job.bullets.map((b, k) => (
-                      <li key={k}>{b}</li>
-                    ))}
-                  </ul>
+        <div className="gitlog">
+          {t.experience.items.map((job, i) => {
+            const c = COMMITS[i] ?? { hash: '0000000', refs: '' }
+            return (
+              <Reveal key={i} delay={i * 0.08}>
+                <article className="commit">
+                  <div className="commit__graph"><span className={`commit__node ${job.current ? 'is-current' : ''}`} /></div>
+                  <div className="commit__body">
+                    <p className="mono commit__hash">
+                      commit {c.hash}
+                      {c.refs && <span className="commit__refs"> ({c.refs})</span>}
+                    </p>
+                    <p className="mono muted small">Date: {job.period} · {job.place}</p>
+                    <h3 className="commit__msg">{job.role}</h3>
+                    <p className="commit__org">{job.org}</p>
+                    <ul className="commit__diff">
+                      {job.bullets.map((b, k) => (
+                        <li key={k}><span className="plus">+</span> {b}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </article>
               </Reveal>
-            </li>
-          ))}
-        </ol>
+            )
+          })}
+        </div>
       </div>
     </section>
   )

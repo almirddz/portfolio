@@ -7,7 +7,7 @@ export default function About() {
     <section id="about">
       <div className="container about">
         <Reveal>
-          <span className="eyebrow">01 · {t.nav.about}</span>
+          <span className="eyebrow">§ 01</span>
           <h2 className="section-title">{t.about.title}</h2>
         </Reveal>
         <div className="about__body">

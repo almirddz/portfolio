@@ -15,7 +15,7 @@ export default function Skills() {
     <section id="skills" className="section-alt">
       <div className="container">
         <Reveal>
-          <span className="eyebrow">02 · {t.nav.skills}</span>
+          <span className="eyebrow">§ 02</span>
           <h2 className="section-title">{t.skills.title}</h2>
         </Reveal>
 

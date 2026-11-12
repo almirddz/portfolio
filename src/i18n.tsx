@@ -55,7 +55,7 @@ function useThemeState() {
       const v = localStorage.getItem('theme')
       if (v === 'light' || v === 'dark') return v
     } catch { /* ignore */ }
-    return window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    return 'light'
   })
   useEffect(() => {
     document.documentElement.dataset.theme = theme

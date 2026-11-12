@@ -36,7 +36,7 @@ export default function Nav() {
       <div className="container nav__inner">
         <a href="#top" className="nav__logo" aria-label="Almir Dzaferi – home">
           <span className="nav__logo-mark">AD</span>
-          <span className="nav__logo-text">almir.dzaferi</span>
+          <span className="nav__logo-text">~/almir</span>
         </a>
 
         <nav className={`nav__links ${open ? 'is-open' : ''}`} aria-label="Main">
