@@ -3,7 +3,7 @@
 export const config = {
   name: 'Almir Dzaferi',
   github: 'https://github.com/almirddz',
-  linkedin: '', // e.g. 'https://www.linkedin.com/in/your-profile'
+  linkedin: 'https://www.linkedin.com/in/almir-dzaferi',
   showPhoto: true,
 
   // Contact form (Web3Forms). This access key is public by design (it only lets people send

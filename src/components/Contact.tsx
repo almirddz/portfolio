@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import HCaptcha from '@hcaptcha/react-hcaptcha'
 import { AnimatePresence, motion } from 'framer-motion'
-import { CheckCircle2, AlertCircle, Send, ShieldCheck, Video } from 'lucide-react'
+import { CheckCircle2, AlertCircle, Send, ShieldCheck, Video, Linkedin } from 'lucide-react'
 import { useLang } from '../i18n'
 import { config } from '../config'
 import Reveal from './Reveal'
@@ -97,6 +97,9 @@ export default function Contact() {
           <p>{c.intro}</p>
           <ul className="contact__points">
             <li><Video size={18} /> Google Meet · Teams · Zoom</li>
+            {config.linkedin && (
+              <li><Linkedin size={18} /> <a className="contact__link" href={config.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
+            )}
             <li><ShieldCheck size={18} /> hCaptcha · {c.privacy}</li>
           </ul>
         </Reveal>

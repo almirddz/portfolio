@@ -146,6 +146,7 @@
 .contact__points { margin-top: 24px; display: grid; gap: 10px; font-size: 14px; color: var(--muted); }
 .contact__points li { display: flex; align-items: center; gap: 10px; }
 .contact__points svg { color: var(--red); flex: none; }
+.contact__link { color: var(--text); border-bottom: 2px solid var(--red); }
 .contact__form { display: grid; gap: 22px; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap); }
 .field { display: grid; gap: 4px; }

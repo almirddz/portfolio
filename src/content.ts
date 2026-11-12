@@ -81,14 +81,14 @@ export const content: Record<Lang, Content> = {
     },
     stats: [
       { value: '10,000', label: 'users supported' },
-      { value: '4 yrs', label: 'systems engineering apprenticeship' },
+      { value: '4 yrs', label: 'apprenticeship in enterprise IT' },
       { value: '#1', label: 'best overall average in my profession (FR, 2026)' },
       { value: '3', label: 'working languages' },
     ],
     about: {
       title: 'About me',
       paragraphs: [
-        'I trained as an IT specialist (Federal VET Diploma, systems engineering) at the IT services of the State of Fribourg, an environment of around 10,000 users. There I supported users, managed Cisco network devices, DNS/DHCP and IP address management, and ran virtual machines on VMware.',
+        'I trained as an IT specialist (Federal VET Diploma, enterprise IT) at the IT services of the State of Fribourg, an environment of around 10,000 users. There I supported users, managed Cisco network devices, DNS/DHCP and IP address management, and ran virtual machines on VMware.',
         'Since September 2026 I have been working in an international team in Sapporo, Japan, developing a management system and supporting the network. I like understanding how things work end to end, documenting them well, and turning repetitive tasks into scripts.',
         'Next step: preparing the Cisco CCNA and growing as an infrastructure engineer.',
       ],
@@ -111,7 +111,7 @@ export const content: Record<Lang, Content> = {
           ],
         },
         {
-          role: 'IT Apprentice – Systems Engineering',
+          role: 'IT Apprentice – Enterprise IT',
           org: 'SITel – State of Fribourg',
           place: 'Fribourg, Switzerland',
           period: '2022 – 2026',
@@ -230,14 +230,14 @@ export const content: Record<Lang, Content> = {
     },
     stats: [
       { value: '10’000', label: 'utilisateurs supportés' },
-      { value: '4 ans', label: 'd’apprentissage en technique des systèmes' },
+      { value: '4 ans', label: 'd’apprentissage d’informaticien d’entreprise' },
       { value: '#1', label: 'meilleure moyenne de la profession (FR, 2026)' },
       { value: '3', label: 'langues de travail' },
     ],
     about: {
       title: 'À propos',
       paragraphs: [
-        'Je me suis formé comme informaticien CFC (technique des systèmes) au SITel, le service informatique de l’État de Fribourg, dans un environnement d’environ 10’000 utilisateurs. J’y ai fait du support, géré des équipements réseau Cisco, le DNS/DHCP et l’IPAM, et exploité des machines virtuelles sous VMware.',
+        'Je me suis formé comme informaticien d’entreprise CFC au SITel, le service informatique de l’État de Fribourg, dans un environnement d’environ 10’000 utilisateurs. J’y ai fait du support, géré des équipements réseau Cisco, le DNS/DHCP et l’IPAM, et exploité des machines virtuelles sous VMware.',
         'Depuis septembre 2026, je travaille dans une équipe internationale à Sapporo, au Japon, où je développe un système de gestion et assure le support réseau. J’aime comprendre comment les choses fonctionnent de bout en bout, bien les documenter et transformer les tâches répétitives en scripts.',
         'Prochaine étape : préparer le Cisco CCNA et progresser comme ingénieur infrastructure.',
       ],
@@ -260,7 +260,7 @@ export const content: Record<Lang, Content> = {
           ],
         },
         {
-          role: 'Apprenti informaticien – Technique des systèmes',
+          role: 'Apprenti informaticien d’entreprise',
           org: 'SITel – État de Fribourg',
           place: 'Fribourg, Suisse',
           period: '2022 – 2026',
@@ -367,14 +367,14 @@ export const content: Record<Lang, Content> = {
     },
     stats: [
       { value: '10’000', label: 'betreute Benutzer' },
-      { value: '4 J.', label: 'Lehre in Systemtechnik' },
+      { value: '4 J.', label: 'Lehre als Betriebsinformatiker' },
       { value: '#1', label: 'bester Gesamtdurchschnitt des Berufs (FR, 2026)' },
       { value: '3', label: 'Arbeitssprachen' },
     ],
     about: {
       title: 'Über mich',
       paragraphs: [
-        'Ich habe meine Lehre als Informatiker EFZ (Systemtechnik) beim SITel gemacht, dem Informatikdienst des Kantons Freiburg, mit rund 10’000 Benutzern. Dort habe ich Benutzer unterstützt, Cisco-Netzwerkgeräte, DNS/DHCP und IPAM verwaltet und virtuelle Maschinen unter VMware betrieben.',
+        'Ich habe meine Lehre als Betriebsinformatiker EFZ beim SITel gemacht, dem Informatikdienst des Kantons Freiburg, mit rund 10’000 Benutzern. Dort habe ich Benutzer unterstützt, Cisco-Netzwerkgeräte, DNS/DHCP und IPAM verwaltet und virtuelle Maschinen unter VMware betrieben.',
         'Seit September 2026 arbeite ich in einem internationalen Team in Sapporo, Japan: Ich entwickle ein Management-System und betreue das Netzwerk. Ich will verstehen, wie Dinge von Anfang bis Ende funktionieren, dokumentiere sauber und mache aus wiederkehrenden Aufgaben Skripte.',
         'Nächster Schritt: Cisco CCNA und Weiterentwicklung als Infrastructure Engineer.',
       ],
@@ -397,7 +397,7 @@ export const content: Record<Lang, Content> = {
           ],
         },
         {
-          role: 'Informatik-Lernender – Systemtechnik',
+          role: 'Lernender Betriebsinformatiker',
           org: 'SITel – Kanton Freiburg',
           place: 'Freiburg, Schweiz',
           period: '2022 – 2026',
